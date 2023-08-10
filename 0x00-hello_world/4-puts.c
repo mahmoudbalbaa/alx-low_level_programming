@@ -1,11 +1,14 @@
-/*This program about writing a string using puts function */
+/*
+ * File name: 4-puts.c
+ */
 
 # include <stdio.h>
 
+/*The main func is about printing a string using puts function*/
+
 int main (void)
-{
-	char x[60] = "\"Programming is like building a multilingual puzzle";
-		
-	puts(x);
+{		
+	puts ("\"Programming is like building a multilingual puzzle");
+	
 	return (0);
 }
