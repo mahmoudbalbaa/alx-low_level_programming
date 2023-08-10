@@ -1,14 +1,18 @@
 /*
- * File name: 4-puts.c
+ * File: 4-puts.c
  */
 
-# include <stdio.h>
+#include <stdio.h>
 
-/*The main func is about printing a string using puts function*/
-
-int main (void)
-{		
+/**
+ * main - Prints "Programming is like building a multilingual
+ *                puzzle, followed by a new line.
+ *
+ * Return: 0.
+ */
+int main(void)
+{
 	puts("\"Programming is like building a multilingual puzzle");
-	
+
 	return (0);
 }
