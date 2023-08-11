@@ -14,11 +14,11 @@
  */
 int main(void)
 {
-	printf("Size of char: %zu byte(s)\n"
-	"Size of int: %zu byte(s)\n"
-	"Size of long int: %zu byte(s)\n"
-	"Size of long long int: %zu byte(s)\n"
-	"Size of float: %zu byte(s)\n"
+	printf("Size of a char: %zu byte(s)\n"
+	"Size of an int: %zu byte(s)\n"
+	"Size of a long int: %zu byte(s)\n"
+	"Size of a long long int: %zu byte(s)\n"
+	"Size of a float: %zu byte(s)\n"
 	, sizeof(char), sizeof(int), sizeof(long int),
 	sizeof(long long int), sizeof(float));
 
