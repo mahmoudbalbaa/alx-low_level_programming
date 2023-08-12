@@ -6,7 +6,7 @@
  *	prints x
  *	increases x by 1
  * puts a new line at the end
- * Retuen: always 0
+ * Return: always 0
  */
 int main(void)
 {
