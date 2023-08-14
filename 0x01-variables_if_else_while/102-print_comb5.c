@@ -10,7 +10,7 @@
  */
 int main(void)
 {
-	int a = 0 , b, count = 0;
+	int a = 0, b, count = 0;
 
 	while (a <= 98)
 	{
@@ -33,5 +33,5 @@ int main(void)
 		a++;
 	}
 	putchar('\n');
-	return(0);
+	return (0);
 }
