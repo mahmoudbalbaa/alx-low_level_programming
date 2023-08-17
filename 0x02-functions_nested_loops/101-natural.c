@@ -14,11 +14,7 @@ int main(void)
 	while (n < 1024)
 	{
 		if (n % 3 == 0 || n % 5 == 0)
-		{
-			putchar(n + '0');
 			sum += n;
-			putchar('\n');
-		}
 		n++;
 	}
 	thou = sum / 1000;
