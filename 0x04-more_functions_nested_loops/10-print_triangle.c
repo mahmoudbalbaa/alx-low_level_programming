@@ -8,17 +8,19 @@
 
 void print_triangle(int size)
 {
-	int s, t, l;
+	int replay, count;
 
-	if (size <= 0)
+	if (size < 1)
+	{
 		_putchar('\n');
-	else
-		for (l = 1; l <= size; l++)
-		{
-			for (s = size - l; s >= 0; s--)
-				_putchar(' ');
-			for (t = l; t > 0; t--)
-				_putchar('#');
-			_putchar('\n');
-		}
+		return;
+	}
+	for (replay = 1; replay <= size; replay++)
+	{
+		for (count = size - replay; count > 0; count--)
+			_putchar(' ');
+		for (count = replay; count > 0; count--)
+			_putchar('#');
+		_putchar('\n');
+	}
 }
