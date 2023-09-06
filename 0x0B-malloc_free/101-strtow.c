@@ -1,41 +1,103 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /**
- * strtow - function that splits a string into words
- * @str: a string
- * Return: NULL str equals NULL or "", or x if not
- */
+*strtow - splits a stirng into words
+*@str: string to be splitted
+*
+*Return: pointer to the array of splitted words
+*/
 
+int len(char *str);
+int num_words(char *str);
 char **strtow(char *str)
 {
-	int i, j, p = 0, w = 0;
-	char **x;
+	char **split;
+	int i, j = 0, temp = 0, size = 0, words = num_words(str);
 
-	if (str == NULL || *str == '\0')
+	if (words == 0)
 		return (NULL);
-	if (str[0] == ' ' && str[1] == '\0')
-		return (NULL);
-	for (i = 0; str[i] != '\0'; i++)
-		if ((str[i] != ' ') && (str[i + 1] == ' ' || str[i + 1] == '\0'))
-			w++;
-	x = (char **) malloc(sizeof(char *) * (w + 1));
-	if (x == NULL)
-		return (NULL);
-	for (i = 0; i < w; i++)
+	split = (char **) malloc(sizeof(char *) * (words + 1));
+	if (split != NULL)
 	{
-		while (str[p] == ' ')
-			p++;
-		for (j = 0; str[p] != ' ' && str[p] != '\0'; j++, p++)
-			;
-		x[i] = (char *) malloc(sizeof(char) * (j + 1));
-		if (x[i] == NULL)
-			return (NULL);
-		strncpy(x[i], &str[p - j], j);
-		x[i][j] = '\0';
+		for (i = 0; i <= len(str) && words; i++)
+		{
+			if ((str[i] != ' ') && (str[i] != '\0'))
+				size++;
+			else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
+			{
+				split[j] = (char *) malloc(sizeof(char) * size + 1);
+				if (split[j] != NULL)
+				{
+					while (temp < size)
+					{
+						split[j][temp] = str[(i - size) + temp];
+						temp++;
+					}
+					split[j][temp] = '\0';
+					size = temp = 0;
+					j++;
+				}
+				else
+				{
+					while (j-- >= 0)
+						free(split[j]);
+					free(split);
+					return (NULL);
+				}
+			}
+		}
+		split[words] = NULL;
+		return (split);
 	}
-	x[w] = NULL;
-	return (x);
+	else
+		return (NULL);
+}
+
+
+/**
+* num_words - counts the number of words in str
+*@str: string to be used
+*
+*Return: number of words
+*/
+int num_words(char *str)
+{
+	int i = 0, words = 0;
+
+	while (i <= len(str))
+	{
+		if ((str[i] != ' ') && (str[i] != '\0'))
+		{
+			i++;
+		}
+		else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
+		{
+			words += 1;
+			i++;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return (words);
+}
+
+/**
+* len - returns length of str
+*@str: string to be counted
+*
+* Return: length of the string
+*/
+
+int len(char *str)
+{
+	int len = 0;
+
+	if (str != NULL)
+	{
+		while (str[len])
+		len++;
+	}
+	return (len);
 }
