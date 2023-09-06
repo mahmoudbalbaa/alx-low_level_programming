@@ -14,7 +14,9 @@ char **strtow(char *str)
 	int i, j, p = 0, w = 0;
 	char **x;
 
-	if (str == NULL || *str == '\0' || str[1] == '\0')
+	if (str == NULL || *str == '\0')
+		return (NULL);
+	if (str[0] == ' ' && str[1] == '\0')
 		return (NULL);
 	for (i = 0; str[i] != '\0'; i++)
 		if ((str[i] != ' ') && (str[i + 1] == ' ' || str[i + 1] == '\0'))
