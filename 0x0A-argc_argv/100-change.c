@@ -21,7 +21,10 @@ int main(int argc, char **argv)
 	}
 	i = atoi(argv[1]);
 	if (i < 0)
+	{
 		printf("%d\n", 0);
+		return (0);
+	}
 	while (i)
 	{
 		if (i >= 25)
