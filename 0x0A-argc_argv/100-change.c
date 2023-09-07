@@ -1,58 +1,47 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * main - program that prints the minimum number of
- * coins to make change for an amount of money
- * @argc: arg counter
- * @argv: a pointer to strings
- * Return: 1 if argc not equal 2 or 0 if not
- */
+ * main - prints minimum number coins to make change for an amount of money.
+ * @argc: number of arguments
+ * @argv: array with the arguments
+ *
+ * Return: always 0
+ **/
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int n = 0, i;
+	int dev = 0, coins = 0;
+	char c[] = "Error";
 
 	if (argc != 2)
 	{
-		printf("Error\n");
+		printf("%s\n", c);
 		return (1);
 	}
-	i = atoi(argv[1]);
-	if (i < 0)
+	dev = atoi(argv[1]);
+	while (dev >= 25)
 	{
-		printf("%d\n", 0);
-		return (-1);
+		dev -= 25;
+		coins++;
 	}
-	while (i)
+	while (dev >= 10)
 	{
-		if (i >= 25)
-		{
-			i -= 25;
-			n++;
-		}
-		else if (i < 25 && i >= 10)
-		{
-			i -= 10;
-			n++;
-		}
-		else if (i < 10 && i >= 5)
-		{
-			i -= 5;
-			n++;
-		}
-		else if (i < 5 && i >= 2)
-		{
-			i -= 2;
-			n++;
-		}
-		else
-		{
-			i--;
-			n++;
-		}
+		dev -= 10;
+		coins++;
 	}
-	printf("%d\n", n);
+	while (dev >= 5)
+	{
+		dev -= 5;
+		coins++;
+	}
+	while (dev >= 2)
+	{
+		dev -= 2;
+		coins++;
+	}
+	if (dev == 1)
+		coins++;
+	printf("%d\n", coins);
 	return (0);
 }
