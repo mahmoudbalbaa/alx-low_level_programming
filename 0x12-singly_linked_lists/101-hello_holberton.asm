@@ -1,44 +1,40 @@
-	.file	"101-hello_holberton.c"
-	.text
-	.section	.rodata
-.LC0:
-	.string	"Hello, Holberton"
-	.text
-	.globl	main
-	.type	main, @function
-main:
-.LFB0:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	leaq	.LC0(%rip), %rdi
-	call	puts@PLT
-	movl	$0, %eax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE0:
-	.size	main, .-main
-	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0"
-	.section	.note.GNU-stack,"",@progbits
-	.section	.note.gnu.property,"a"
-	.align 8
-	.long	 1f - 0f
-	.long	 4f - 1f
-	.long	 5
-0:
-	.string	 "GNU"
-1:
-	.align 8
-	.long	 0xc0000002
-	.long	 3f - 2f
-2:
-	.long	 0x3
-3:
-	.align 8
-4:
+; Filename: 101-hello_holberton.asm - Print a string using printf
+; Author: Wendy Munyasi
+; Assemble: nasm -f elf64 101-hello_holberton.asm
+; Link: gcc -no-pie -std=gnu89 101-hello_holberton.o -o hello
+; Run: ./hello
+; You are only allowed to use printf
+; You are not allowed to use interrupts
+; Your program will be compiled using nasm and gcc
+
+; Equivalent C code
+; #include <stdio.h>
+; int main(void)
+; {
+; 	char msg[] = "Hello, Holberton";
+;   	printf("%s\n",msg);
+;   	return (0);
+; }
+
+; Declare needed C functions
+		extern printf			; the C function to be called
+
+		SECTION .data			; Data section, initialized variables
+message:    	db "Hello, Holberton", 0	; strings must be terminated with 0 in C
+format:    	db "%s", 10, 0			; the printf format, "\n", '0'
+
+		SECTION .text
+
+		global main
+main:						; the program label for the entry point
+		push rbp			; set up stack frame, must be alligned
+
+		mov rdi,format
+		mov rsi,message
+		mov rax,0			; or can be  xor  rax,rax
+		call printf			; Call C function
+
+		pop rbp				; restore stack
+
+		mov rax,0			; normal, no error, return value
+		ret				; return
